@@ -6,12 +6,18 @@ var exchange = function(){
     var users_vip = ["53", "54", "55"];
     var flipStep = 10;
     var flipTime = 200;
-    var exchangeTableRow = 3;
-    var exchangeTableColumn = 3;
+    var exchangeTableRow = 5;
+    var exchangeTableColumn = 2;
     var exchangeTableSize = exchangeTableRow * exchangeTableColumn;
     var vipInterval = 1000;
     var normalInterval = 1000;
     var isVip = true;
+    var normalCanvasWidth = 75;
+    var normalCanvasHeight = 112.5;
+    var normalCanvasRadius = 7.5;
+    var vipCanvasWidth = 100;
+    var vipCanvasHeight = 150;
+    var vipCanvasRadius = 10;
 
     function arrayShuffle(theArray) {
         var len = theArray.length;
@@ -174,19 +180,19 @@ var exchange = function(){
 
         for(var i = 0; i < number && i < exchangeTableSize; i++){
             var row = parseInt(i/exchangeTableColumn);
-            var column = parseInt(i/exchangeTableRow);
-            var leftCanvas = createCanvas($('img#people_img_unknown').get(0), 75, 50, 5);
-            var rightCanvas = createCanvas($('img#people_img_unknown').get(0), 75, 50, 5);
+            var column = i % exchangeTableColumn;
+            var leftCanvas = createCanvas($('img#people_img_unknown').get(0), normalCanvasHeight, normalCanvasWidth, normalCanvasRadius);
+            var rightCanvas = createCanvas($('img#people_img_unknown').get(0), normalCanvasHeight, normalCanvasWidth, normalCanvasRadius);
             var exchangeDiv = createExchangeDiv(i, leftCanvas, "?", rightCanvas, "?", "");
             rowList[row][column].appendChild(exchangeDiv);
         }
 
         if(hasTripple && number < exchangeTableSize){
-            var canvas1 = createCanvas($('img#people_img_unknown').get(0), 75, 50, 5);
-            var canvas2 = createCanvas($('img#people_img_unknown').get(0), 75, 50, 5);
-            var canvas3 = createCanvas($('img#people_img_unknown').get(0), 75, 50, 5);
+            var canvas1 = createCanvas($('img#people_img_unknown').get(0), normalCanvasHeight, normalCanvasWidth, normalCanvasRadius);
+            var canvas2 = createCanvas($('img#people_img_unknown').get(0), normalCanvasHeight, normalCanvasWidth, normalCanvasRadius);
+            var canvas3 = createCanvas($('img#people_img_unknown').get(0), normalCanvasHeight, normalCanvasWidth, normalCanvasRadius);
             var exchangeDiv = createMultiExchangeDiv([canvas1, canvas2, canvas3], ["?", "?", "?"], "");
-            rowList[parseInt(number/exchangeTableColumn)][parseInt(number/exchangeTableRow)].appendChild(exchangeDiv);
+            rowList[parseInt(number/exchangeTableColumn)][number % exchangeTableColumn].appendChild(exchangeDiv);
         }
 
         return normalDiv;
@@ -208,8 +214,8 @@ var exchange = function(){
             vipEntryDivs.push(entryDiv);
         }
         for (i in users_vip){
-            var leftCanvas = createCanvas($('img#people_img_'+users_vip[i]).get(0), 150, 100, 10);
-            var rightCanvas = createCanvas($('img#people_img_unknown').get(0), 150, 100, 10);
+            var leftCanvas = createCanvas($('img#people_img_'+users_vip[i]).get(0), vipCanvasHeight, vipCanvasWidth, vipCanvasRadius);
+            var rightCanvas = createCanvas($('img#people_img_unknown').get(0), vipCanvasHeight, vipCanvasWidth, vipCanvasRadius);
             var exchangeDiv = createExchangeDiv(i, leftCanvas, users[users_vip[i]].name, rightCanvas, "?", "-large");
             vipEntryDivs[i].appendChild(exchangeDiv);
         }
@@ -224,7 +230,7 @@ var exchange = function(){
             isVip = false;
             return;
         }
-        coverflowFlip(150, 100, 10, "pair_right_"+index, "pair_right_name_"+index, flipStep);
+        coverflowFlip(vipCanvasHeight, vipCanvasWidth, vipCanvasRadius, "pair_right_"+index, "pair_right_name_"+index, flipStep);
         coverflowClear();
         arrayShuffle(users_list);
         coverflowInit();
@@ -234,7 +240,7 @@ var exchange = function(){
 
     function startNormalTrippleExchange(index){
         if(index > 2) return;
-        coverflowFlip(75, 50, 5, "multipair_"+index, "multipair_name_"+index, flipStep);
+        coverflowFlip(normalCanvasHeight, normalCanvasWidth, normalCanvasRadius, "multipair_"+index, "multipair_name_"+index, flipStep);
         coverflowClear();
         arrayShuffle(users_list);
         coverflowInit();
@@ -260,10 +266,10 @@ var exchange = function(){
         }
         else{
             if(isLeft){
-                coverflowFlip(75, 50, 5, "pair_left_"+index, "pair_left_name_"+index, flipStep);
+                coverflowFlip(normalCanvasHeight, normalCanvasWidth, normalCanvasRadius, "pair_left_"+index, "pair_left_name_"+index, flipStep);
             }
             else{
-                coverflowFlip(75, 50, 5, "pair_right_"+index, "pair_right_name_"+index, flipStep);
+                coverflowFlip(normalCanvasHeight, normalCanvasWidth, normalCanvasRadius, "pair_right_"+index, "pair_right_name_"+index, flipStep);
             }
 
             coverflowClear();

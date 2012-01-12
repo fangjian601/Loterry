@@ -248,35 +248,35 @@ div#name-container span{
 }
 
 div.exchange-container{
-    width: 150px;
-    height: 90px; 
+    width: 225px;
+    height: 135px; 
 }
 
 div.exchange-user-container{
     float: left;
-    width: 50px;
+    width: 75px;
 }
 
 div.exchange-user-canvas-container{
-    width: 50px;
-    height: 75px;
+    width: 75px;
+    height: 112.5px;
 }
 
 div.exchange-username-container{
-    width: 50px;
-    height: 15px;
-    margin: 2px auto auto auto;
+    width: 75px;
+    height: 22.5px;
+    margin: 3px auto auto auto;
 }
 
 div.exchange-label-container{
     float: left;
-    width: 50px;
-    height: 90px;
+    width: 75px;
+    height: 135px;
 }
 
 div.exchange-label-container p{
-    margin: 40px, auto;
-    font-size: 2em;
+    margin: 60px, auto;
+    font-size: 3em;
 }
 
 div.exchange-container-large{
@@ -324,9 +324,10 @@ div#normal-exchange-container{
 }
 
 div.normal-exchange-row{
-    height: 110px;
+    height: 160px;
 }
 
 div.normal-exchange-cell{
+    margin: auto 10px auto auto;
     float: left;
 }
