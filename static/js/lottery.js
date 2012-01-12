@@ -89,11 +89,9 @@ var lottery = function(){
             if(e.keyCode == 32){
                 if(currentStage == 1){
                     lottery.start();
-                    currentStage = 0;
                 }
                 else{
                     lottery.stop();
-                    currentStage = 1;
                 }
             }
         });
@@ -223,13 +221,14 @@ var lottery = function(){
             flipStop = false;
             flipTime = flipInitTime;
             coverflowFlip();
+            currentStage = 0;
         },
 
         stop: function(){
             flipStop = true; 
             $('#stop-button').attr('class', 'button graybutton');
             $('#stop-button').attr('disabled', 'disabled');
-
+            currentStage = 1;
         },
 
         reset: function(){
