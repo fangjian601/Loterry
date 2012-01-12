@@ -1,0 +1,5 @@
+*.pyc
+log/*.log
+db/*.db
+static/images/people/*.JPG
+.DS_Store

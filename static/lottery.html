@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8' />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
+        <title>行云2011年会大抽奖</title>
+        <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="js/lottery.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/lottery.css" />
+    </head>
+    <body onload="lottery.init()">
+        <div id="img-container" class="hidden-container">
+        </div>
+        <div id="logo-container">
+            <img src="images/logo.png" id="logo-img"/>
+        </div>
+        <div id="main-container">
+            <div id="header-container">
+
+                <div id="header-left-triangle"></div>
+                <div id="header-rectangle">
+                    <p>行云2011年会大抽奖</p>
+                </div>
+                <div id="header-right-triangle"></div>
+            </div>
+
+            <div id="buttons-container">
+                <table id="buttons-table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <button id="start-button" class="button bluebutton" onclick="lottery.start()">开始</button>
+                            </td>
+                            <td>
+                                <button id="stop-button" class="button graybutton" onclick="lottery.stop()" disabled="disabled">结束</button>
+                            </td>
+                            <td>
+                                <button id="reset-button" class="button bluebutton" onclick="lottery.reset()">重置</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="turntable-container">
+                <ul id="coverflow"></ul>
+            </div>
+            <div id="name-container">
+                <span id="name-label" class="button orangebutton bigrounded"></span> 
+            </div>
+
+        </div>
+    </body>
+</html>
