@@ -77,6 +77,7 @@ var lottery = function(){
         $('#start-button').removeAttr('disabled');
         $('#reset-button').attr('class', 'button bluebutton');
         $('#reset-button').removeAttr('disabled');
+        currentStage = 1;
 
     }
     
@@ -90,7 +91,7 @@ var lottery = function(){
                 if(currentStage == 1){
                     lottery.start();
                 }
-                else{
+                else if(currentStage == 0){
                     lottery.stop();
                 }
             }
@@ -170,7 +171,7 @@ var lottery = function(){
         for(var uid in users){
             var imageElement = document.createElement('img');
             imageElement.setAttribute("id", "people_img_"+uid);
-            imageElement.setAttribute("src", "images/people/"+users[uid].picture);
+            imageElement.setAttribute("src", users[uid].picture);
             $('#img-container').append(imageElement);
         }
         pictureInit(); 
@@ -209,6 +210,7 @@ var lottery = function(){
         },
         
         start: function(){
+            currentStage = -1;
             $('#start-button').attr('class', 'button graybutton');
             $('#start-button').attr('disabled', 'disabled');
             $('#stop-button').attr('class', 'button bluebutton');
@@ -225,10 +227,10 @@ var lottery = function(){
         },
 
         stop: function(){
+            currentStage = -1;
             flipStop = true; 
             $('#stop-button').attr('class', 'button graybutton');
             $('#stop-button').attr('disabled', 'disabled');
-            currentStage = 1;
         },
 
         reset: function(){

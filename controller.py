@@ -81,7 +81,6 @@ class UserController():
 
         return "ok"
 
-
 class RewardUserController():
     
     def __init__(self, persistence):
