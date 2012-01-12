@@ -10,6 +10,7 @@ var lottery = function(){
     var flipMaxTime = 1300;
     var flipStepTime = 400;
     var flipTime = flipInitTime;
+    var currentStage = 1;
 
     function arrayShuffle(theArray) {
         var len = theArray.length;
@@ -79,6 +80,25 @@ var lottery = function(){
 
     }
     
+    function buttonInit(){
+        $('#start-button').attr('class', 'button bluebutton');
+        $('#start-button').removeAttr('disabled');
+        $('#reset-button').attr('class', 'button bluebutton');
+        $('#reset-button').removeAttr('disabled');
+        $(window).keydown(function(e) {
+            if(e.keyCode == 32){
+                if(currentStage == 1){
+                    lottery.start();
+                    currentStage = 0;
+                }
+                else{
+                    lottery.stop();
+                    currentStage = 1;
+                }
+            }
+        });
+    }
+
     function coverflowFlip(){
 
         if(flipStop && flipTime >= flipMaxTime){
@@ -177,6 +197,7 @@ var lottery = function(){
                             }
                             arrayShuffle(users_list);
                             coverflowInit();
+                            buttonInit();
                         }
                         else{
                             throw rewardsJSON.error.msg;
@@ -241,3 +262,5 @@ var lottery = function(){
         }
     };
 }();
+
+
