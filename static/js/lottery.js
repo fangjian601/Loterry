@@ -4,6 +4,7 @@ var lottery = function(){
     var coverflowWindowSize = 9;
     var users = null;
     var users_list = [];
+    var users_exclude = ["53", "54", "55"];
     var rewards = [];
     var flipStop = false;
     var flipInitTime = 100;
@@ -185,7 +186,9 @@ var lottery = function(){
                 if(usersJSON.status == 0){
                     users = usersJSON.val;
                     for(user in users){
-                        users_list.push(user);
+                        if(users_exclude.indexOf(user) == -1){
+                            users_list.push(user);
+                        }
                     }
                     jQuery.get("/reward/get", function(data){
                         var rewardsJSON = jQuery.parseJSON(data);

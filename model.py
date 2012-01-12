@@ -14,7 +14,7 @@ class User(ORMBase):
 
     def __init__(self, name, picture):
         self.name = unicode(name, "utf-8")
-        self.picture = unicode(picture, "utf-8")
+        self.picture = picture
 
     def todict(self):
         user_dict = {}
