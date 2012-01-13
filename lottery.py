@@ -27,6 +27,8 @@ def init_logger():
 
 def init_cherrypy():
     cherrypy.config.update('conf/cherrypy.ini')
+    cherrypy.config["tools.decode.on"] = True
+    cherrypy.config["tools.decode.encoding"] = "utf-8"
     
 def start_service(): 
     persistence = Persistence()

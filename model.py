@@ -13,8 +13,15 @@ class User(ORMBase):
     picture = sqlalchemy.Column(sqlalchemy.Text, nullable=False)
 
     def __init__(self, name, picture):
-        self.name = unicode(name, "utf-8")
-        self.picture = picture
+        if isinstance(name, str):
+            self.name = unicode(name, "utf-8")
+        else:
+            self.name = unicode(name)
+
+        if isinstance(picture, str):
+            self.picture = unicode(picture, "utf-8")
+        else:
+            self.picture = unicode(picture)
 
     def todict(self):
         user_dict = {}

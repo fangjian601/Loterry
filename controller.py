@@ -74,7 +74,10 @@ class UserController():
             query = session.query(User)
             user = query.get(id)
             if user is not None:
-                user.picture = picture
+                if isinstance(picture, str):
+                    user.picture = unicode(picture,"utf-8")
+                else:
+                    user.picture = unicode(picture)
                 session.commit()
         finally:
             session.close()
