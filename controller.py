@@ -39,6 +39,25 @@ class UserController():
 
     @cherrypy.expose
     @Helper.restful
+    def exist(self, name):
+        session = self.persistence.session()
+        exist = False
+        try:
+            if isinstance(name, str):
+                name = unicode(name, "utf-8")
+            else:
+                name = unicode(name)
+            count = session.query(User).filter(User.name == name).count()
+            if(count > 0):
+                exist = True
+        finally:
+            session.close()
+
+        return exist
+
+
+    @cherrypy.expose
+    @Helper.restful
     def get(self, id):
         retval = {}
         session = self.persistence.session()
